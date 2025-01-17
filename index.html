@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="weather__header">
+            <!-- weather search section to input preferred location  -->
+            <form class="weather__search">
+                <input type="text" placeholder="Search for a city..." class="weather__searchform">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+            <!-- Section for weather unit measurement, based on choice of toggle -->
+            <div class="weather__units">
+                <span id="unit-celsius" class="active-unit">°C</span>
+                <span>|</span>
+                <span id="unit-fahrenheit">°F</span>
+            </div>
+        </header>
+        
+        <main class="weather__body">
+            <section id="current-weather">
+                <!-- The space for current weather section -->
+            </section>
+            <section id="forecast">
+                <!-- forecast section with daily breakdown -->
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
