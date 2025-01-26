@@ -1,9 +1,8 @@
-// Code section of weather app with Five Days Forecast 
+//the section to target area of the html
 
 const apiKey = "7ccfece36c0298268b533e25cabb3b80";
 const weatherApiUrl = "https://api.openweathermap.org/data/2.5/forecast";
 const currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather";
-
 const searchInput = document.querySelector(".weather__searchform");
 const celsiusToggle = document.querySelector(".weather_unit_celsius");
 const fahrenheitToggle = document.querySelector(".weather_unit_farenheit");
@@ -12,7 +11,7 @@ const forecastContainer = document.getElementById("forecast");
 
 let isCelsius = true;
 
-// This section fetches for data and display weather data
+// fetches data and display weather data
 const fetchWeather = async (city) => {
   try {
     const [currentResponse, forecastResponse] = await Promise.all([
@@ -30,13 +29,17 @@ const fetchWeather = async (city) => {
     displayCurrentWeather(currentWeather);
     displayForecast(forecastData);
   } catch (error) {
-    alert("Error fetching weather data. Please check the city name and try again.");
+    alert(
+      "Error fetching weather data. Please check the city name and try again."
+    );
   }
 };
 
 // this section display the current weather
 const displayCurrentWeather = (data) => {
-  const temperature = isCelsius ? kelvinToCelsius(data.main.temp) : kelvinToFahrenheit(data.main.temp);
+  const temperature = isCelsius
+    ? kelvinToCelsius(data.main.temp)
+    : kelvinToFahrenheit(data.main.temp);
 
   currentWeatherContainer.innerHTML = `
     <h2>${data.name}, ${data.sys.country}</h2>
@@ -49,19 +52,25 @@ const displayCurrentWeather = (data) => {
   `;
 };
 
-// Section of to display 5 days forecast
+// Section that display 5 days forecast
 const displayForecast = (data) => {
-  const dailyForecasts = data.list.filter((reading) => reading.dt_txt.includes("12:00:00"));
+  const dailyForecasts = data.list.filter((reading) =>
+    reading.dt_txt.includes("12:00:00")
+  );
 
   forecastContainer.innerHTML = dailyForecasts
     .slice(0, 5)
     .map((day) => {
-      const temperature = isCelsius ? kelvinToCelsius(day.main.temp) : kelvinToFahrenheit(day.main.temp);
+      const temperature = isCelsius
+        ? kelvinToCelsius(day.main.temp)
+        : kelvinToFahrenheit(day.main.temp);
 
       return `
         <div class="forecast-day">
           <h3>${formatDate(day.dt_txt)}</h3>
-          <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="${day.weather[0].description}">
+          <img src="https://openweathermap.org/img/wn/${
+            day.weather[0].icon
+          }@2x.png" alt="${day.weather[0].description}">
           <p>${temperature}&#176; ${isCelsius ? "C" : "F"}</p>
           <div class="forecast-details">
             <span>Humidity: ${day.main.humidity}%</span>
@@ -74,9 +83,10 @@ const displayForecast = (data) => {
     .join("");
 };
 
-// Temperature Conversion Calculation Section Celcuis , Celcuis to Fahrenheit
+// Conversion Calculation Section Celcuis , Celcuis to Fahrenheit
 const kelvinToCelsius = (kelvin) => Math.round(kelvin - 273.15);
-const kelvinToFahrenheit = (kelvin) => Math.round((kelvin - 273.15) * 9/5 + 32);
+const kelvinToFahrenheit = (kelvin) =>
+  Math.round(((kelvin - 273.15) * 9) / 5 + 32);
 
 // the date format
 const formatDate = (dateString) => {
@@ -84,7 +94,7 @@ const formatDate = (dateString) => {
   return new Date(dateString).toLocaleDateString(undefined, options);
 };
 
-// The Event Listeners
+// The EventListeners
 searchInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     e.preventDefault();
@@ -94,7 +104,7 @@ searchInput.addEventListener("keypress", (e) => {
     }
   }
 });
-//Toggle point of choice of unit for measurement
+//Toggle the measurement unit of choice.
 celsiusToggle.addEventListener("click", () => {
   if (!isCelsius) {
     isCelsius = true;
@@ -106,7 +116,7 @@ celsiusToggle.addEventListener("click", () => {
     }
   }
 });
-//Toggle point of choice of unit for measurement
+//Toggle the measurement unit of choice.
 fahrenheitToggle.addEventListener("click", () => {
   if (isCelsius) {
     isCelsius = false;
