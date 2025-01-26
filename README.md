@@ -1,11 +1,13 @@
 Webstack - Portfolio Project
 This project was built by Samuel Stephen and Magadani Neo
 This project is a straightforward weather application that enables users to look up the current weather conditions for a specific location.
+The application displays the weather forcast for the next five days
 
 Features
 -Search for weather information by entering a location name or postal code. -Check the current temperature, humidity levels, wind speed, and detailed weather conditions.
 
 Technologies Used
+
 HTML
 CSS
 JavaScript
